@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>{% block title%}Mates{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'nav.css' %}">
+    <style>
+      {% block css %} {% endblock %}
+
+</style>
+  </head>
+  <body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="background-color: violet !important;">
+        <div class="container-fluid">
+          <a class="navbar-brand icon-color" href="/"><b style="color: black;">Home</b></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link icon-color" aria-current="page" href="/mates"><b style="color: black;">Mates</b></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link icon-color" href="/add"><b style="color: black;">Add Mates</b> </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link icon-color" href="/comment"><b style="color: black;">Comment Zone</b></a>
+              </li>
+             
+
+              <li class="nav-item">
+                <a class="nav-link" href=""></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link animate" ><b style="color: white; font-family:cursive ; font-size: larger;">SCHOOL MATES</b></a>
+              </li>
+
+             
+            </ul>
+            {% block comment %}
+            {% endblock %}
+
+            {%if  request.session.email%}
+            
+             <form class="d-flex" >
+
+              <b class="form-control me-5" style="background-color: #EE82EE !important; font-weight: bolder !important;">{{welcome|title}}</b>
+              <button class="btn btn-outline-success" type="submit" ><a style="text-decoration: none; color: white; font-weight: bolder;" href="/logout">Logout</a></button>
+            </form>
+             
+              {%else%}
+              <form class="d-flex" >
+                <b onmouseover="this.style.backgroundColor='#006db9'" onmouseout="this.style.backgroundColor='#EE82EE'" class="form-control me-5" style= " background-color: #EE82EE !important; font-weight: bolder !important;"><a id="loginhover" style="text-decoration: none; color: white; font-weight: bolder; " href="/login">Login</a></b>
+            
+          
+            </form>
+      {%endif%}
+
+          </div>
+        </div>
+      </nav>
+    
+      <!-- ______________________________________________________________________________________________________________ -->
+      {% block body %} 
+        
+      <div>.</div>
+      <div>.</div>
+      <div>.</div>
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col-md-auto image-permission" style="border-radius: 12px !important; color: blue !important; font-family: cursive; font-size:x-large;background-color: #DF6861 !important;">
+           <b class="animate"> Created Just to Remind old memories</b>
+          </div>
+          <div>.</div>
+        <div class="row justify-content-md-center">
+          <div class="col-md-auto image-permission" style="color: red !important; font-family: cursive;">
+           <b class="animate"> Sorry for using the Images without permission. I hope you will not mind.</b>
+          </div>
+        </div>
+
+<div>.</div>
+
+        <div class="row justify-content-md-center">
+
+          <div class="col-md-auto image-permission" style="color: blue !important; font-family: cursive;">
+            <b class="animate">You can add your mates by clicking on Add Mates option.</b>
+           </div>
+        </div>
+      <div class="container">
+      <div class="row ml-1">
+      {% for i in get_data %}
+
+        <div class="col-sm-4 ml-1">
+
+          <div class="card m-4" style="width: 18rem;">
+
+            <img class="card-img-top" src="/media/{{i.photo}}" alt="Card image cap" style="height: 300px; width: 300px ;">
+            <div class="card-body">
+              <h5 class="card-title">{{i.name|title}}</h5>
+              <p class="card-text">{{i.about}}</p>
+              
+
+              <!-- <a href="#" class="btn btn-primary">Sandeep Bisht</a> -->
+
+            </div>
+          </div>
+        </div>
+                           
+        {% endfor %}
+                            
+    </div>  
+  </div>    
+    {% endblock %}
+
+{% block js %}
+
+{% endblock %}
+
+
+      <!-- ------------------------------------------------------------------------------------------------------------- -->
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

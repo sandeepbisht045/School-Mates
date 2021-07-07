@@ -1,0 +1,81 @@
+{% extends "mates.html" %}
+{% block comment %}
+<!-- <form class="d-flex" method="POST" action="/comment">
+    {%csrf_token%}
+    <input class="form-control me-4" type="text" placeholder="Comment Here" aria-label="Search" name="comment" required minlength="2">
+    <button class="btn btn-primary" type="submit">Comment</button>
+  </form> -->
+{% endblock %}
+{% block title %}Comment Section{% endblock %}
+{% block css %}
+
+body {
+    background-color: #007AFF
+}
+
+
+{% endblock %}
+
+{% block body %}
+<!-- ____________________________________________________________________ -->
+
+<div class="container mt-5 mb-5 px-3 m-4 " style="position: fixed; border-radius: 0px !important;">
+    <div class="d-flex justify-content-center row">
+        <div class="d-flex flex-column col-md-5">
+         
+            <div class="coment-bottom bg-  p-2 px-5 " >
+              
+                <div class="commented-section mt-2">
+                
+                    <div class="d-flex flex-row align-items-center commented-user">
+                        <form class="d-flex" method="POST" action="/comment">
+                            {%csrf_token%}
+                            <input class="form-control me-6 " type="text" style="background-color: gold  !important; border-radius: 12px !important; color: white !important;" placeholder="Comment Here" aria-label="Search" name="comment" required minlength="2">
+                            <span><pre>  </pre></span>
+                            <button class="btn btn-success form-group w-25" type="submit">Post</button>
+                          </form>
+                        <!-- <h5 class="mr-2">Sandeep Bisht</h5><span> <pre>  </pre> </span><span class="mb-1 ml-2">4 hours ago</span> -->
+                    </div>
+                    <div class="comment-text-sm"><span>{{i.comment}}</span></div>
+                   
+                </div>
+               
+               
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- ___________________________________________________________________________ -->
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+
+{% for i in comment_fetch %}
+
+<div class="container mt-5 mb-5 m-4">
+    <div class="d-flex justify-content-center row">
+        <div class="d-flex flex-column col-md-5">
+         
+            <div class="coment-bottom bg-white p-2 px-3">
+              
+                <div class="commented-section mt-2">
+                
+                    <div class="d-flex flex-row align-items-center commented-user">
+                        <h5 class="mr-2">{{i.user|title}}</h5><span> <pre>  </pre> </span><span class="mb-1 ml-2">{{i.whenpublished}}</span>
+                    </div>
+                    <div class="comment-text-sm"><span>{{i.comment}}</span></div>
+                   
+                </div>
+               
+               
+            </div>
+        </div>
+    </div>
+
+
+</div>
+{% endfor %}
+{% endblock %}
