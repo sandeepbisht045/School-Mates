@@ -3,15 +3,6 @@ from django.utils import timezone
 import math
 
 # Create your models here.
-class Mates(models.Model):
-    name=models.CharField(max_length=100)
-    about=models.CharField(max_length=1000)
-    photo=models.ImageField(upload_to="",default="defaultpic.png")
-    
-    def __str__(self):
-        return self.name    
-    
-    
 class Users(models.Model):
     email=models.EmailField()
     
@@ -19,7 +10,20 @@ class Users(models.Model):
     password=models.CharField(max_length=30)
     
     def __str__(self):
-        return self.name  
+        return self.name
+
+
+
+
+
+class Mates(models.Model):
+    name=models.CharField(max_length=100)
+    about=models.CharField(max_length=1000)
+    photo=models.ImageField(upload_to="",default="defaultpic.png")
+    added_by=models.ForeignKey(Users,on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.name    
     
     
 class User_comments(models.Model):

@@ -15,11 +15,18 @@ def mates(request):
 
 def add(request):
    if request.method=="POST":
-        useremail=request.session.get("email")
-        if useremail:
+        username=request.session.get("name")
+        usermail=request.session.get("email")
+        
+        if username:
             name=request.POST.get("name")
             about=request.POST.get("about")
-            data=Mates(name=name,about=about).save()
+            user=Users.objects.get(name=username,email=usermail)
+            a=Mates.objects.create(name=name,about=about,added_by=user)
+            a.save()
+            
+            
+            # data=Mates(name=name,about=about).save()
             return redirect("/mates")
         else:
             return redirect("/login")
